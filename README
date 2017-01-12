@@ -1,6 +1,9 @@
 This was the procedure to convert the csv files of the printed sources into JSON arrays.
 
     - all rmk and rmny files were concatenated into all_NAME.csv files
+        - files were imported via mongochef
+        - 11 documents tom 'rmk' collection
+        - 34  documents 'rmny' collection
     - pages were converted to JSON files with pagesToJson.js
         - target: pagesJson/res.json
         - the script uses csvtojson npm package
