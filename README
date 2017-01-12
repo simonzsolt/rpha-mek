@@ -9,6 +9,10 @@ This was the procedure to convert the csv files of the printed sources into JSON
         - the script uses csvtojson npm package
         - in order to parse strings like. '0000' as strings the  'checkType : false'
             condition was added to the options
+        - the resulting file is not a valid JSON array
+            - the last ',' needs to be removed
+            - the complete list needs to be placed in '[]'-s and formated
+                accordingly
         - each line within a PAGE.csv was converted to a separate object
         - the name of the csv page files (i.e. the last part of MEK folder URL)
             was added to the objects as 'MEK_sub'
