@@ -1,0 +1,12 @@
+This was the procedure to convert the csv files of the printed sources into JSON arrays.
+
+    - all rmk and rmny files were concatenated into all_NAME.csv files
+    - pages were converted to JSON files with pagesToJson.js
+        - target: pagesJson/res.json
+        - the script uses csvtojson npm package
+        - in order to parse strings like. '0000' as strings the  'checkType : false'
+            condition was added to the options
+        - each line within a PAGE.csv was converted to a separate object
+        - the name of the csv page files (i.e. the last part of MEK folder URL)
+            was added to the objects as 'MEK_sub'
+        - 640 documents were imported
