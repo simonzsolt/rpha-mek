@@ -17,3 +17,35 @@ This was the procedure to convert the csv files of the printed sources into JSON
         - the name of the csv page files (i.e. the last part of MEK folder URL)
             was added to the objects as 'MEK_sub'
         - 640 documents were imported
+
+TODO:
+    - fix pages model
+        - MEK field is duplicate with RMNY and RMK fileds
+        - to model the parts of the MEK URL as follows:
+            - MEKUrl:
+                -prot
+                - host
+                - path1
+                - path2
+                - path3
+                - path4
+                - path5
+            - e.g. http://mek.oszk.hu/12200/12273/html/RMK_1_0007_0018.html
+                    - prot: "http",
+                    - host: "mek.oszk.hu",
+                    - path1: "12200"
+                    - path2: "12273"
+                    - path3: "html"
+                    - path4: "RMK_1_0007_0018"
+                    - path5: "html"
+    - rename docBibNum in RMK to pageNum
+        - some values ha a \d\/.{4-5} pattern (e.g. '1/00Z6R')
+            - this could be a typo of '1/0066R'   
+
+LOG
+
+    RMNY
+        - MEKUrl remodelled
+
+    page
+        -MEKUrl remodelled
