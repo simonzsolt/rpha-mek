@@ -40,7 +40,7 @@ TODO:
                     - path5: "html"
     - rename docBibNum in RMK to pageNum
         - some values ha a \d\/.{4-5} pattern (e.g. '1/00Z6R')
-            - this could be a typo of '1/0066R'   
+            - this could be a typo of '1/0066R'
 
 LOG
 
@@ -49,3 +49,6 @@ LOG
 
     page
         -MEKUrl remodelled
+
+
+rmny-aggreg.js contains a few URLs created with two aggregation steps (sourceRmny and SourceRmnyPageColl)
