@@ -35,22 +35,13 @@ db.source.aggregate([
 			{
 				from: "page",
 				localField: "printedSources.page",
-				foreignField: "pageNum",
+				foreignField: "page.pageNum",
 				as: "page2"
 			}
 	},
+	{ $unwind : "$page" },
+	{ $unwind : "$page2" },
 	{
-		$unwind: "$page2"
-	},
-	{
-		$match:
-		{
-			$and:
-			[
-				{ "page.MEKUrl" : { $exists : true } },
-				{ "rmny.MEKUrl" : { $exists : true } },
-				{ "printedSources.page" : "page2.pageNum" }
-			]
-		}
+	  	$match : { "page.page.pageNum" : "page2.page.pageNum" }
 	}
 ])
