@@ -1,0 +1,32 @@
+{
+    "config": {
+        "log": "debug",
+        "parallel": true
+    },
+    "source": {
+        "file": {
+            "path": "/home/jota/Projects/rpha-mek/manus/rmny.csv"
+        }
+    },
+    "extractor": {
+        "csv": {
+            "separator": ",",
+            "columns": ["bib:string", "mek_path:string"]
+        }
+    },
+    "loader": {
+        "orientdb": {
+            "dbUser": "admin",
+            "dbPassword": "admin",
+            "dbURL": "plocal:/opt/orientdb/databases/rpha",
+            "dbType": "graph",
+            "calsses": {
+                "name": "books",
+                "extends": "V",
+                "cluster": 1
+            },
+            "class": "books",
+            "cluster": "rmny"
+        }
+    }
+}

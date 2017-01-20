@@ -1,0 +1,26 @@
+{
+    "config": {
+        "log": "info",
+        "filedirectory": "/home/jota/Projects/rpha-mek/manus",
+        "fielname": "/rmk.csv"
+    },
+    "begin": [{
+        "let": {
+            "name": "$path",
+            "value": "$filedirectory.append( $fielname )"
+        }
+    }],
+    "source": {
+        "file": {
+            "path": "$fielpath",
+            "lock": true
+        }
+    },
+    "extractor": {
+        "csv": {
+            "separator": ";",
+            "columns": ["bib:string", "mek_path:string"],
+            "ignoreEmptyLines": true
+        }
+    }
+}
