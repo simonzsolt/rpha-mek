@@ -5,13 +5,13 @@
     },
     "source": {
         "file": {
-            "path": "/home/jota/Projects/rpha-mek/manus/rmny.csv"
+            "path": "/home/jota/Projects/rpha-mek/allRMNY.csv"
         }
     },
     "extractor": {
         "csv": {
             "separator": ",",
-            "columns": ["bib:string", "mek_path:string"]
+            "columns": ["bib:string", "path1:string"]
         }
     },
     "loader": {

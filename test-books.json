@@ -1,0 +1,39 @@
+{
+    "config": {
+        "log": "error",
+        "parallel": true
+    },
+    "source": {
+        "file": {
+            "path": "/home/jota/Projects/rpha-mek/allRMK.csv"
+        }
+    },
+    "extractor": {
+        "csv": {
+            "separator": ",",
+            "columns": ["itemSubId:string", "itemMainId:string", "path1:string", "path2:string"]
+        }
+    },
+    "transformers": [{
+        "vertex": {
+            "class": "RMK"
+        }
+    }],
+    "loader": {
+        "orientdb": {
+            "dbUser": "admin",
+            "dbPassword": "admin",
+            "dbURL": "plocal:/opt/orientdb/databases/rpha",
+            "dbType": "graph",
+            "calsses": [{
+                    "name": "RMK",
+                    "extends": "V"
+                },
+                {
+                    "name": "contains",
+                    "extends": "E"
+                }
+            ]
+        }
+    }
+}

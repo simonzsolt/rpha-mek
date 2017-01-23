@@ -1,0 +1,55 @@
+{
+    "config": {
+        "log": "error",
+        "parallel": true,
+        "filepath": "/home/jota/Projects/rpha-mek/pagesConcat.csv"
+    },
+    "blocks": {
+        "let": {
+            "name": "$files",
+            "expression": ""
+        }
+    },
+    "source": {
+        "file": {
+            "path": "$filepath"
+        }
+    },
+    "extractor": {
+        "csv": {
+            "separator": ",",
+            "columns": ["pageNum:string", "path4:string", "path2:string"]
+        }
+    },
+    "transformers": [{
+            "vertex": {
+                "class": "PAGES"
+            }
+        },
+        {
+            "edge": {
+                "class": "contains",
+                "joinFieldName": "path2",
+                "lookup": "RMK.RID",
+                "direction": "in"
+            }
+        }
+    ],
+    "loader": {
+        "orientdb": {
+            "dbUser": "admin",
+            "dbPassword": "admin",
+            "dbURL": "plocal:/opt/orientdb/databases/rpha",
+            "dbType": "graph",
+            "calsses": [{
+                    "name": "PAGES",
+                    "extends": "V"
+                },
+                {
+                    "name": "contains",
+                    "extends": "E"
+                }
+            ]
+        }
+    }
+}
