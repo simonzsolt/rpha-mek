@@ -1,0 +1,25 @@
+FOR b IN books
+    FOR p IN pages
+    FILTER b.path2 == p.path2
+    INSERT { "_from":b._id, "_to":p._id } IN hasPage
+    RETURN {
+        "bookId": b._id,
+        "pageId":  p._id,
+        "bookItemMainId": b.itemMainId,
+        "bookItemSubId": b.itemSubId,
+        "pageNum": p.pageNum,
+        "bookPath2": b.path2,
+        "pagePath2": p.path2,
+        "URL": CONCAT(
+            "http://mek.oszk.hu/",
+            b.path1, "/",
+            b.path2,
+            "/html/",
+            p.path4,
+            ".html"
+
+        )
+
+    }
+
+   
