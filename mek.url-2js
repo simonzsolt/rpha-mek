@@ -1,0 +1,19 @@
+var tempArr = [];
+
+db.urls2.find().forEach(function(doc){
+	db.verse.find({"source.sourceId": doc.fullId}).forEach(function(verse){
+		//printjson(verse.id + ' @ ' + verse.source.length + ' @@ ' + doc.fullId)
+	
+		var tempArr = verse.source;
+					
+		for (i=tempArr.length-1; i >= 0; i--){
+		  
+		  	if ( tempArr[i].sourceId == doc.fullId ) {
+				tempArr[i].url = doc.url
+		  	}
+		}
+		db.verse.updateOne({"_id":verse._id}, {$set:{ "source": tempArr }})
+		tempArr = [];
+	})
+})
+

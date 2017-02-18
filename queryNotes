@@ -1,0 +1,50 @@
+{
+    "verse.source.itemMainId": "book.itemMainId",
+    $and: [
+    {
+	"book.MEK.path2": "page.MEK.path2"
+    },
+        {
+            "verse.source.page": "page.pageNum"
+        },
+        {
+            $and: [
+                {
+                    "verse.source.pageSubId": "page.pageSubId"
+                }
+            ]
+        }
+    ]
+}
+FOR v IN verse
+    FILTER v.recordType == "mainVerse"
+    FOR s IN TO_ARRAY(v.source)
+        FOR b IN books
+            FOR p IN page2
+                LIMIT 1000000
+
+                FILTER
+                    s.itemMainId == b.itemMainId &&
+                    b.path2 == p.MEK.path2 &&
+                    s.page == p.page.pageNum &&
+                    s.pageSubId == p.page.pageSubId
+
+                RETURN {
+                    "verseId": v.id,
+                    "verseSource": s.bookId,
+                    "bookitemMainId": b.itemMainId,
+                    "bookPath": b.path2,
+                    "pagePath": p.MEK.path2,
+                    "versePage": s.page,
+                    "pageNum": p.page.pageNum,
+                    "versePageSub": s.pageSubId,
+                    "PpageSub": p.page.pageSubId,
+                    "url": CONCAT( 'http://mek.oszk.hu/',
+                        b.path1, '/',
+                        b.path2, '/',
+                        'html/',
+                        p.MEK.path4,
+                        '.html'
+
+                        )
+                }
